@@ -1,6 +1,7 @@
-package com.gmail.gorayan3838.shogai;
+package net.kunmc.lab.shogai;
 
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.shader.Framebuffer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -16,7 +17,7 @@ public class Shogai {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-        MinecraftForge.EVENT_BUS.register(new EventHandlerClient());
+        Framebuffer framebuffer = Minecraft.getMinecraft().getFramebuffer();
+        framebuffer.enableStencil();
     }
 }

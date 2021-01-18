@@ -1,19 +1,19 @@
-package com.gmail.gorayan3838.shogai;
+package net.kunmc.lab.shogai;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelPlayer;
-import net.minecraft.client.renderer.entity.RenderEntityItem;
+import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(modid = Shogai.MOD_ID)
 public class EventHandlerClient {
@@ -74,5 +74,19 @@ public class EventHandlerClient {
         }
         e.setCanceled(true);
 
+    }
+
+    private static final ResourceLocation SHADER_LOCATION = new ResourceLocation(Shogai.MOD_ID, "shaders/post/color_convolve.json");
+
+    @SubscribeEvent
+    public static void onRender(RenderGameOverlayEvent.Pre e) {
+        ShaderGroup shaderGroup = Minecraft.getMinecraft().entityRenderer.getShaderGroup();
+        if (shaderGroup == null) {
+            Minecraft.getMinecraft().entityRenderer.loadShader(SHADER_LOCATION);
+            return;
+        }
+        if (!shaderGroup.getShaderGroupName().equals(SHADER_LOCATION.toString())) {
+            Minecraft.getMinecraft().entityRenderer.loadShader(SHADER_LOCATION);
+        }
     }
 }

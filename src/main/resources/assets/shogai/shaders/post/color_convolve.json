@@ -1,0 +1,17 @@
+{
+    "targets": [
+        "swap"
+    ],
+    "passes": [
+        {
+            "name": "shogai:colorblind",
+            "intarget": "minecraft:main",
+            "outtarget": "swap"
+        },
+        {
+            "name": "achromatopsia",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

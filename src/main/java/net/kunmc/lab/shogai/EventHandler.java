@@ -1,4 +1,4 @@
-package com.gmail.gorayan3838.shogai;
+package net.kunmc.lab.shogai;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;

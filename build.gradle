@@ -11,9 +11,9 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle'
 
-group = 'com.gmail.gorayan3838'
+group = 'net.kunmc.lab'
 version = '1.0-SNAPSHOT'
-archivesBaseName = 'Shogai'
+archivesBaseName = 'shogai'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 

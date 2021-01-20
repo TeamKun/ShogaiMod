@@ -6,4 +6,5 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 public class HandicapAttributes {
     public static final IAttribute LIMB = new RangedAttribute((IAttribute) null, "handicap.limb", 0.0F, 0.0F, Float.MAX_VALUE).setDescription("Handicap Limb").setShouldWatch(true);
     public static final IAttribute NO_HEARING = new RangedAttribute((IAttribute) null, "handicap.noHearing", 0.0F, 0.0F, Float.MAX_VALUE).setDescription("Handicap no Hearing").setShouldWatch(true);
+    public static final IAttribute COLOR_BLIND = new RangedAttribute((IAttribute) null, "handicap.colorBlind", 0.0F, 0.0F, Float.MAX_VALUE).setDescription("Handicap color blind").setShouldWatch(true);
 }

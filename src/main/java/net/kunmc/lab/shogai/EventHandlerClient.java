@@ -14,8 +14,9 @@ import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(modid = Shogai.MOD_ID)
+@Mod.EventBusSubscriber(value = {Side.CLIENT}, modid = Shogai.MOD_ID)
 public class EventHandlerClient {
     @SubscribeEvent
     public static void sound(PlaySoundEvent e) {
@@ -80,6 +81,13 @@ public class EventHandlerClient {
 
     @SubscribeEvent
     public static void onRender(RenderGameOverlayEvent.Pre e) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        IAttributeInstance attribute = player.getEntityAttribute(HandicapAttributes.COLOR_BLIND);
+        double value = attribute.getAttributeValue();
+        if (value < 1) {
+            Minecraft.getMinecraft().entityRenderer.loadEntityShader(null);
+            return;
+        }
         ShaderGroup shaderGroup = Minecraft.getMinecraft().entityRenderer.getShaderGroup();
         if (shaderGroup == null) {
             Minecraft.getMinecraft().entityRenderer.loadShader(SHADER_LOCATION);

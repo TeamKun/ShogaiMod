@@ -24,28 +24,27 @@ public class EventHandler {
             if (map.getAttributeInstance(HandicapAttributes.NO_HEARING) == null) {
                 map.registerAttribute(HandicapAttributes.NO_HEARING);
             }
+            if (map.getAttributeInstance(HandicapAttributes.COLOR_BLIND) == null) {
+                map.registerAttribute(HandicapAttributes.COLOR_BLIND);
+            }
         }
     }
 
     @SubscribeEvent
     public static void onDamage(LivingDamageEvent e) {
         float damage = e.getAmount();
-        if (damage > 4) {
-            IAttributeInstance attribute = e.getEntityLiving().getEntityAttribute(HandicapAttributes.LIMB);
-            attribute.setBaseValue(attribute.getBaseValue() + 1);
-        }
+        IAttributeInstance attribute = e.getEntityLiving().getEntityAttribute(HandicapAttributes.LIMB);
+        attribute.setBaseValue(attribute.getBaseValue() + Math.floor(damage / 4));
     }
 
     @SubscribeEvent
     public static void tick(TickEvent.PlayerTickEvent e) {
         IAttributeInstance attribute = e.player.getEntityAttribute(HandicapAttributes.LIMB);
         double value = attribute.getAttributeValue();
-        if (value < 1) {
+        if (value < 2) {
             return;
         }
-        if (value >= 3) {
-
-        }
+        e.player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(0);
         if (value >= 4) {
             e.player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0);
         }

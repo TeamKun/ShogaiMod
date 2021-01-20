@@ -1,5 +1,7 @@
 package net.kunmc.lab.shogai;
 
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
@@ -52,6 +54,9 @@ public class EventHandler {
             return;
         }
         EntityPlayer target = (EntityPlayer) e.getTarget();
+        if (target.capabilities.isCreativeMode) {
+            return;
+        }
         if (!(e.getEntity() instanceof EntityPlayer)) {
             return;
         }
@@ -69,6 +74,9 @@ public class EventHandler {
             return;
         }
         EntityPlayer entityPlayer = (EntityPlayer) e.getEntity();
+        if (entityPlayer.capabilities.isCreativeMode) {
+            return;
+        }
         IAttributeInstance attribute = entityPlayer.getEntityAttribute(HandicapAttributes.LIMB);
         double value = attribute.getAttributeValue();
         if (value < 4) {
@@ -81,6 +89,9 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void tick(TickEvent.PlayerTickEvent e) {
+        if (e.player.capabilities.isCreativeMode) {
+            return;
+        }
         IAttributeInstance attribute = e.player.getEntityAttribute(HandicapAttributes.LIMB);
         double value = attribute.getAttributeValue();
         if (value < 2) {

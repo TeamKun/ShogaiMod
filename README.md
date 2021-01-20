@@ -2,6 +2,7 @@
 
 プレイヤーに障害を追加するModです。
 ## Version
+Minecraft 1.12.2
 forge 1.12.2
 ## 障害一覧(エフェクト名)
 * 四肢の切断 `shogai:limbHandicap`

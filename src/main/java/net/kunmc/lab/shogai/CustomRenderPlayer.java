@@ -25,7 +25,7 @@ public class CustomRenderPlayer extends RenderPlayer {
             if (layerrenderer.getClass().equals(LayerHeldItem.class)) {
                 IAttributeInstance attribute = entitylivingbaseIn.getEntityAttribute(HandicapAttributes.LIMB);
                 double value = attribute.getAttributeValue();
-                if (value < 2) {
+                if (value < 4) {
                     layerrenderer.doRenderLayer(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleIn);
                 }
             } else {

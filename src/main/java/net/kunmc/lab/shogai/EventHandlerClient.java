@@ -43,25 +43,25 @@ public class EventHandlerClient {
             CustomRenderPlayer render = (CustomRenderPlayer) e.getRenderer();
             ModelPlayer modelPlayer = render.getMainModel();
             if (value >= 1) {
-                modelPlayer.bipedLeftArm.render(0);
-                modelPlayer.bipedLeftArmwear.render(0);
-            }
-            if (value >= 2) {
-                modelPlayer.bipedRightArm.render(0);
-                modelPlayer.bipedRightArmwear.render(0);
-            }
-            if (value >= 3) {
                 modelPlayer.bipedRightLeg.render(0);
                 modelPlayer.bipedRightLegwear.render(0);
             }
-            if (value >= 4) {
+            if (value >= 2) {
                 modelPlayer.bipedLeftLeg.render(0);
                 modelPlayer.bipedLeftLegwear.render(0);
+            }
+            if (value >= 3) {
+                modelPlayer.bipedLeftArm.render(0);
+                modelPlayer.bipedLeftArmwear.render(0);
+            }
+            if (value >= 4) {
+                modelPlayer.bipedRightArm.render(0);
+                modelPlayer.bipedRightArmwear.render(0);
             }
             return;
         }
         e.setCanceled(true);
-        double y = value < 4 ? e.getY() : e.getY() - 0.6d;
+        double y = value < 2 ? e.getY() : e.getY() - 0.6d;
         new CustomRenderPlayer(e.getRenderer().getRenderManager(), ((AbstractClientPlayer) e.getEntityPlayer()).getSkinType().equals("slim")).doRender((AbstractClientPlayer) e.getEntityPlayer(), e.getX(), y ,e.getZ(), e.getEntityPlayer().rotationYawHead, e.getPartialRenderTick());
     }
 

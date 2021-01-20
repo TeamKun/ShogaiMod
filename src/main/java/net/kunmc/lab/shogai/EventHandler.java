@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -44,7 +46,7 @@ public class EventHandler {
         if (value < 2) {
             return;
         }
-        e.player.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).setBaseValue(0);
+        e.player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 7, 2));
         if (value >= 4) {
             e.player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0);
         }
